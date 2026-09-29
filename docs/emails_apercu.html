@@ -1,0 +1,229 @@
+<title>Boîte de test GebTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: mail-client split — message list on the left, reading pane on the right; stacks on phones */
+:root {
+  --bg: #f3f5f7;
+  --panel: #ffffff;
+  --ink: #17212b;
+  --muted: #5d6b78;
+  --line: #dde3e9;
+  --hover: #eef2f5;
+  --accent: #0f6e7a;
+  --accent-soft: #e0f0f2;
+  --ham: #1e7a44; --ham-bg: #e3f3e9;
+  --spam: #9a6200; --spam-bg: #fbf0da;
+  --phish: #b3261e; --phish-bg: #fbe5e3;
+  --code-bg: #f6f8fa;
+  --f-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1418; --panel: #161d23; --ink: #e4e9ee; --muted: #93a1ae; --line: #26313a; --hover: #1d262d;
+    --accent: #4fb8c4; --accent-soft: #15333a;
+    --ham: #6fd39a; --ham-bg: #173226; --spam: #f0b54a; --spam-bg: #362a12; --phish: #ff8a80; --phish-bg: #3d1a18;
+    --code-bg: #11181d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1418; --panel: #161d23; --ink: #e4e9ee; --muted: #93a1ae; --line: #26313a; --hover: #1d262d;
+  --accent: #4fb8c4; --accent-soft: #15333a;
+  --ham: #6fd39a; --ham-bg: #173226; --spam: #f0b54a; --spam-bg: #362a12; --phish: #ff8a80; --phish-bg: #3d1a18;
+  --code-bg: #11181d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 40px; display: grid; gap: 16px; }
+header.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+h1 { margin: 0; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+.sub { margin: 2px 0 0; color: var(--muted); font-size: 0.9rem; }
+.sub code { font-family: var(--f-mono); font-size: 0.85em; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px; }
+.stat { display: flex; align-items: baseline; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
+.stat b { font-variant-numeric: tabular-nums; color: var(--ink); font-size: 1rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; align-self: center; }
+.dot.ham { background: var(--ham); } .dot.spam { background: var(--spam); } .dot.phishing { background: var(--phish); }
+
+.client { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; min-height: 640px; }
+.listcol { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; }
+.tools { padding: 12px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); }
+.search { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); font: inherit; font-size: 0.9rem; }
+.search:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button { font: inherit; font-size: 0.8rem; font-weight: 500; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+.filters button:hover { background: var(--hover); }
+.filters button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+.filters .n { font-variant-numeric: tabular-nums; opacity: .75; }
+
+.list { list-style: none; margin: 0; padding: 0; overflow-y: auto; max-height: 720px; }
+.item { display: grid; grid-template-columns: 4px minmax(0, 1fr); border-bottom: 1px solid var(--line); cursor: pointer; }
+.item:hover { background: var(--hover); }
+.item.sel { background: var(--accent-soft); }
+.item .stripe.ham { background: var(--ham); } .item .stripe.spam { background: var(--spam); } .item .stripe.phishing { background: var(--phish); }
+.item .body { padding: 10px 12px; min-width: 0; display: grid; gap: 2px; }
+.row1 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.from { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.num { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.subj { font-size: 0.87rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.snip { font-size: 0.8rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.warnmark { color: var(--phish); font-size: 0.72rem; font-weight: 600; }
+.empty { padding: 24px 16px; color: var(--muted); font-size: 0.9rem; }
+
+.reader { padding: 24px 28px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.back { display: none; font: inherit; font-size: 0.85rem; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; align-self: start; }
+.rhead { display: grid; gap: 10px; }
+.rhead h2 { margin: 0; font-size: 1.3rem; line-height: 1.3; text-wrap: balance; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; justify-self: start; }
+.pill.ham { color: var(--ham); background: var(--ham-bg); }
+.pill.spam { color: var(--spam); background: var(--spam-bg); }
+.pill.phishing { color: var(--phish); background: var(--phish-bg); }
+.sender { display: flex; gap: 12px; align-items: center; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: var(--hover); color: var(--accent); flex: none; }
+.sender .who { min-width: 0; }
+.sender .name { font-weight: 600; }
+.sender .addr { font-family: var(--f-mono); font-size: 0.8rem; color: var(--muted); overflow-wrap: anywhere; }
+.headers { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; font-size: 0.82rem; padding: 12px 14px; background: var(--code-bg); border: 1px solid var(--line); border-radius: 6px; }
+.headers dt { color: var(--muted); font-family: var(--f-mono); font-size: 0.76rem; padding-top: 1px; }
+.headers dd { margin: 0; font-family: var(--f-mono); overflow-wrap: anywhere; }
+.headers .none { color: var(--muted); }
+.headers .bad { color: var(--phish); font-weight: 500; }
+.alerts { display: grid; gap: 6px; }
+.alert { font-size: 0.85rem; padding: 8px 12px; border-radius: 6px; background: var(--phish-bg); color: var(--ink); border-left: 3px solid var(--phish); }
+.alert code { font-family: var(--f-mono); font-size: 0.8rem; }
+.msg { font-size: 1rem; line-height: 1.65; max-width: 65ch; margin: 0; overflow-wrap: anywhere; }
+.msg .url { font-family: var(--f-mono); font-size: 0.85em; color: var(--accent); background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+.msg .url.http { color: var(--phish); background: var(--phish-bg); }
+.note { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .client { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .listcol { border-right: 0; }
+  .list { max-height: none; }
+  .reader { padding: 18px 16px; }
+  .client.reading .listcol { display: none; }
+  .client:not(.reading) .reader { display: none; }
+  .back { display: inline-block; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Boîte de test</h1>
+      <p class="sub">Les <span id="total"></span> courriels de <code>emails_test.csv</code>, affichés comme dans un client de messagerie.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="client" id="client">
+    <div class="listcol">
+      <div class="tools">
+        <input class="search" id="q" type="search" placeholder="Rechercher expéditeur, objet, contenu…" aria-label="Rechercher">
+        <div class="filters" id="filters" role="group" aria-label="Filtrer par étiquette"></div>
+      </div>
+      <ul class="list" id="list"></ul>
+    </div>
+    <article class="reader" id="reader" aria-live="polite"></article>
+  </div>
+</div>
+
+<script>
+const EMAILS = [{"sender": "marie.tremblay@cegep-exemple.qc.ca", "name": "Marie Tremblay", "subject": "Remise du travail pratique 3", "message": "Bonjour, je vous confirme que la remise du TP3 est reportee au 14 mars. Le document est deja depose sur le portail du cours.", "return_path": "marie.tremblay@cegep-exemple.qc.ca", "reply_to": "", "label": "ham"}, {"sender": "comptes@hydroquebec.com", "name": "Hydro-Quebec", "subject": "Votre facture de fevrier est disponible", "message": "Votre facture est accessible dans votre Espace client. Montant 87,43 $. Aucune action requise si vous etes inscrit au prelevement automatique.", "return_path": "comptes@hydroquebec.com", "reply_to": "", "label": "ham"}, {"sender": "info@infolettre-cuisine.com", "name": "Infolettre Cuisine", "subject": "Infolettre - 5 recettes de saison", "message": "Voici nos suggestions de la semaine. Pour vous desabonner utilisez le lien en bas de page. Merci de nous lire depuis 2019.", "return_path": "bounce-4471@infolettre-cuisine.com", "reply_to": "", "label": "ham"}, {"sender": "rh@entreprise-exemple.qc.ca", "name": "Ressources humaines", "subject": "Rappel formation SST le 12 avril", "message": "La formation en sante et securite au travail aura lieu au local B-204. Merci de confirmer votre presence aupres de votre superviseur.", "return_path": "rh@entreprise-exemple.qc.ca", "reply_to": "", "label": "ham"}, {"sender": "notifications@depot-git-exemple.com", "name": "Depot Git", "subject": "Nouvelle demande de fusion 42", "message": "Alexandre a ouvert une demande de fusion sur la branche correctif-connexion. Vous recevez ce message car vous suivez ce depot.", "return_path": "notifications@depot-git-exemple.com", "reply_to": "", "label": "ham"}, {"sender": "service.client@librairie-exemple.ca", "name": "Librairie Exemple", "subject": "Confirmation de commande 88213", "message": "Merci pour votre commande. Livraison prevue entre le 3 et le 5 mars. Vous pouvez suivre le colis depuis votre compte.", "return_path": "service.client@librairie-exemple.ca", "reply_to": "", "label": "ham"}, {"sender": "direction@cegep-exemple.qc.ca", "name": "Direction", "subject": "Fermeture du campus - tempete", "message": "En raison des conditions meteorologiques le campus sera ferme demain. Les cours se donneront a distance selon l horaire habituel.", "return_path": "direction@cegep-exemple.qc.ca", "reply_to": "", "label": "ham"}, {"sender": "bibliotheque@cegep-exemple.qc.ca", "name": "Bibliotheque du cegep", "subject": "Rappel de retour de document", "message": "Le document emprunte le 2 fevrier doit etre rapporte avant vendredi. Aucuns frais ne sont exiges pour l instant.", "return_path": "bibliotheque@cegep-exemple.qc.ca", "reply_to": "", "label": "ham"}, {"sender": "noreply@desjardins.com", "name": "AccesD Desjardins", "subject": "Votre releve mensuel", "message": "Votre releve de compte est disponible dans AccesD. Connectez-vous a partir de https://accesd.desjardins.com/identification pour le consulter.", "return_path": "noreply@desjardins.com", "reply_to": "", "label": "ham"}, {"sender": "abonnements@revue-exemple.ca", "name": "Revue Exemple", "subject": "Renouvellement de votre abonnement", "message": "Profitez de 20 % de rabais sur votre renouvellement. Vous etes membre depuis 2019 et nous vous en remercions.", "return_path": "bounce@revue-exemple.ca", "reply_to": "", "label": "ham"}, {"sender": "no-reply@microsoftonline.com", "name": "Equipe Microsoft 365", "subject": "Nouvelle connexion a votre compte", "message": "Une connexion a votre compte a ete effectuee depuis Montreal. Si c etait bien vous aucune action n est requise.", "return_path": "no-reply@microsoftonline.com", "reply_to": "", "label": "ham"}, {"sender": "support@fournisseur-internet.ca", "name": "Soutien technique", "subject": "Suivi de votre demande 5591", "message": "Votre demande a ete resolue. Si le probleme persiste repondez a ce message et un technicien vous rappellera dans les 24 heures.", "return_path": "support@fournisseur-internet.ca", "reply_to": "", "label": "ham"}, {"sender": "finances@entreprise-exemple.qc.ca", "name": "Service des finances", "subject": "Rapport trimestriel", "message": "Le rapport du trimestre est joint. Croissance de 12 % des ventes par rapport a la meme periode l an dernier.", "return_path": "finances@entreprise-exemple.qc.ca", "reply_to": "", "label": "ham"}, {"sender": "promo@super-rabais-exemple.biz", "name": "Super Rabais", "subject": "LIQUIDATION TOTALE JUSQU A 90% DE RABAIS", "message": "ACHETEZ MAINTENANT !!! Les stocks partent tres vite !!! CLIQUEZ ICI http://bit.ly/aff9921 OFFRE VALIDE 24H SEULEMENT !!!", "return_path": "bounce9912@super-rabais-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "info@pilules-miracle-exemple.biz", "name": "Sante Express", "subject": "Perdez 15 kg en 2 semaines GARANTI", "message": "Notre produit revolutionnaire fonctionne SANS EFFORT. GRATUIT pour les 100 premiers ! Commandez ici http://tinyurl.com/xk991", "return_path": "noreply@pilules-miracle-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "casino@jeux-en-ligne-exemple.biz", "name": "Casino Royal", "subject": "500$ DE BONUS GRATUIT POUR VOUS", "message": "GAGNEZ GROS DES CE SOIR !!! Bonus de bienvenue de 500 DOLLARS. Inscription en 30 secondes http://bit.ly/cs771", "return_path": "casino@jeux-en-ligne-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "ventes@montres-luxe-exemple.biz", "name": "Montres Luxe", "subject": "Repliques de montres de luxe prix imbattables", "message": "Montres haut de gamme a partir de 49$. Livraison mondiale discrete. Visitez notre catalogue http://bit.ly/mt4421 et profitez de -50 % de rabais.", "return_path": "ventes@montres-luxe-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "crypto@investir-vite-exemple.biz", "name": "Investir Vite", "subject": "Devenez RICHE avec la cryptomonnaie", "message": "Nos clients font 300% de PROFIT par mois. ARGENT FACILE AUCUN RISQUE. Inscrivez-vous MAINTENANT !!! http://bit.ly/cr882", "return_path": "crypto@investir-vite-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "diplomes@universite-express-exemple.biz", "name": "Universite Express", "subject": "Obtenez votre diplome en 15 jours", "message": "Diplome reconnu sans examen sans cours. Appelez le 1-800-555-0199. Offre limitee ne manquez pas cette chance unique.", "return_path": "diplomes@universite-express-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "pub@voyages-pas-chers-exemple.biz", "name": "Voyages Soleil", "subject": "VOYAGE GRATUIT AUX CARAIBES VOUS AVEZ GAGNE", "message": "FELICITATIONS !!! Vous avez ete SELECTIONNE pour un sejour GRATUIT. Reclamez votre prix ici http://tinyurl.com/vg771", "return_path": "pub@voyages-pas-chers-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "offres@assurance-rabais-exemple.biz", "name": "Assurance Rabais", "subject": "Economisez 40% sur votre assurance auto", "message": "Comparez gratuitement en 2 minutes. Des milliers de clients satisfaits. Achetez maintenant votre protection http://bit.ly/as331", "return_path": "offres@assurance-rabais-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "deals@boutique-exemple.biz", "name": "Boutique Exclusive", "subject": "EXCLUSIVE OFFER 70% DISCOUNT BUY NOW", "message": "WIN a FREE GIFT LIMITED TIME CLICK NOW !!! Special deal just for you http://bit.ly/bx221", "return_path": "deals@boutique-exemple.biz", "reply_to": "", "label": "spam"}, {"sender": "securite@desjardins-verification.info", "name": "Service Desjardins", "subject": "URGENT votre compte sera suspendu dans 24 heures", "message": "Nous avons detecte une activite suspecte. Vous devez verifier votre identite immediatement sinon votre acces sera bloque. Confirmez ici http://desjardins-verification.info/login", "return_path": "x9921@relais-etranger.info", "reply_to": "recuperation9912@gmail.com", "label": "phishing"}, {"sender": "support@microsoft-secure-alert.info", "name": "Microsoft Support", "subject": "Alerte de securite connexion inhabituelle", "message": "Une connexion depuis un appareil inconnu a ete detectee. Reinitialisez votre mot de passe immediatement http://198.51.100.77/microsoft/login.php Votre compte sera verrouille sous 12 heures.", "return_path": "bulk771@microsoft-secure-alert.info", "reply_to": "helpdesk.recovery@outlook-support.info", "label": "phishing"}, {"sender": "livraison@postes-canada-suivi.info", "name": "Postes Canada", "subject": "Votre colis est en attente frais de douane impayes", "message": "Votre colis ne peut etre livre. Des frais de 2,99 $ sont requis. Payez maintenant pour eviter le retour http://postes-canada-suivi.info/paiement?ref=8821", "return_path": "auto@postes-canada-suivi.info", "reply_to": "", "label": "phishing"}, {"sender": "tirs@portail-etudiant-secure.info", "name": "Cegep Service informatique", "subject": "Votre boite courriel a depasse son quota", "message": "Votre compte etudiant sera desactive aujourd hui. Pour conserver vos courriels reconnectez-vous avec votre code permanent http://portail-etudiant-secure.info/webmail", "return_path": "noreply@portail-etudiant-secure.info", "reply_to": "it.support.recovery@mail.com", "label": "phishing"}, {"sender": "no-reply@steamcommunity-gift.info", "name": "Steam Support", "subject": "Votre compte a ete signale action requise", "message": "Votre compte Steam a ete signale pour activite frauduleuse et sera banni. Pour contester connectez-vous ici http://steamcommunity-gift.info/verify", "return_path": "bot4412@steamcommunity-gift.info", "reply_to": "", "label": "phishing"}, {"sender": "service@paypa1.com", "name": "PayPal Service", "subject": "Verification de votre compte requise", "message": "Votre compte PayPal presente une anomalie de facturation. Verifiez vos informations http://paypa1.com/signin sans quoi votre acces sera restreint.", "return_path": "service@paypa1.com", "reply_to": "", "label": "phishing"}, {"sender": "info@netflix-billing.tk", "name": "Netflix", "subject": "Echec du paiement de votre abonnement", "message": "Nous n avons pas pu traiter votre paiement. Mettez a jour vos informations bancaires http://netflix-billing.tk/update.php pour eviter l interruption du service.", "return_path": "info@netflix-billing.tk", "reply_to": "", "label": "phishing"}, {"sender": "remboursement@revenu-quebec-remb.top", "name": "Revenu Quebec", "subject": "Vous avez droit a un remboursement de 428.50 $", "message": "Apres verification de votre dossier un remboursement vous est du. Confirmez vos coordonnees bancaires ici http://revenu-quebec-remb.top/formulaire La demande expire dans 72 heures.", "return_path": "auto9981@revenu-quebec-remb.top", "reply_to": "", "label": "phishing"}, {"sender": "p.dubois@entreprise-exempIe.qc.ca", "name": "Direction generale", "subject": "Demande confidentielle urgent", "message": "Bonjour je suis en reunion et je ne peux pas parler au telephone. J ai besoin que vous procediez a un virement urgent aujourd hui. Ne mentionnez rien a l equipe.", "return_path": "ceo.urgent@mail-fwd.info", "reply_to": "p.dubois.direction@gmail.com", "label": "phishing"}];
+const LABELS = { ham: "Légitime", spam: "Pourriel", phishing: "Hameçonnage" };
+const ORDER = ["all", "ham", "spam", "phishing"];
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const dom = a => (a || "").split("@").pop().toLowerCase();
+
+EMAILS.forEach((e, i) => {
+  e.id = i + 1;
+  e.alerts = [];
+  const sd = dom(e.sender);
+  if (e.return_path && dom(e.return_path) !== sd) e.alerts.push(["Return-Path", dom(e.return_path), sd]);
+  if (e.reply_to && dom(e.reply_to) !== sd) e.alerts.push(["Reply-To", dom(e.reply_to), sd]);
+});
+
+let filter = "all", query = "", selected = EMAILS.find(e => e.label === "phishing" && e.alerts.length)?.id || 1;
+
+const counts = EMAILS.reduce((m, e) => (m[e.label] = (m[e.label] || 0) + 1, m), {});
+$("#total").textContent = EMAILS.length;
+$("#stats").innerHTML = ["ham", "spam", "phishing"].map(l =>
+  `<span class="stat"><span class="dot ${l}"></span>${LABELS[l]} <b>${counts[l] || 0}</b></span>`).join("");
+
+function renderFilters() {
+  $("#filters").innerHTML = ORDER.map(l => {
+    const n = l === "all" ? EMAILS.length : (counts[l] || 0);
+    const dot = l === "all" ? "" : `<span class="dot ${l}"></span>`;
+    return `<button type="button" data-f="${l}" aria-pressed="${filter === l}">${dot}${l === "all" ? "Tous" : LABELS[l]} <span class="n">${n}</span></button>`;
+  }).join("");
+}
+
+function visible() {
+  const q = query.trim().toLowerCase();
+  return EMAILS.filter(e => (filter === "all" || e.label === filter) &&
+    (!q || [e.name, e.sender, e.subject, e.message].join(" ").toLowerCase().includes(q)));
+}
+
+function renderList() {
+  const items = visible();
+  $("#list").innerHTML = items.length ? items.map(e => `
+    <li class="item${e.id === selected ? " sel" : ""}" data-id="${e.id}" tabindex="0">
+      <span class="stripe ${e.label}"></span>
+      <div class="body">
+        <div class="row1"><span class="from">${esc(e.name)}</span><span class="num">#${String(e.id).padStart(2, "0")}</span></div>
+        <div class="subj">${esc(e.subject)}</div>
+        <div class="snip">${e.alerts.length ? `<span class="warnmark">⚠ en-têtes incohérents · </span>` : ""}${esc(e.message)}</div>
+      </div>
+    </li>`).join("") : `<li class="empty">Aucun courriel ne correspond à cette recherche.</li>`;
+}
+
+function linkify(text) {
+  return esc(text).replace(/(https?:\/\/[^\s]+?)([.,)]?)(?=\s|$)/g, (m, url, tail) =>
+    `<span class="url ${url.startsWith("http:") ? "http" : ""}" title="${url.startsWith("http:") ? "Lien non chiffré (http)" : "Lien"}">${url}</span>${tail}`);
+}
+
+function renderReader() {
+  const e = EMAILS.find(x => x.id === selected);
+  if (!e) { $("#reader").innerHTML = `<p class="empty">Sélectionnez un courriel.</p>`; return; }
+  const badHdr = h => e.alerts.some(a => a[0] === h);
+  const hv = (h, v) => v ? `<dd class="${badHdr(h) ? "bad" : ""}">${esc(v)}</dd>` : `<dd class="none">—</dd>`;
+  $("#reader").innerHTML = `
+    <button class="back" type="button" id="back">← Retour à la liste</button>
+    <div class="rhead">
+      <span class="pill ${e.label}"><span class="dot ${e.label}"></span>${LABELS[e.label]} · ${e.label}</span>
+      <h2>${esc(e.subject)}</h2>
+      <div class="sender">
+        <span class="avatar" aria-hidden="true">${esc(e.name.trim()[0] || "?")}</span>
+        <div class="who"><div class="name">${esc(e.name)}</div><div class="addr">&lt;${esc(e.sender)}&gt;</div></div>
+      </div>
+    </div>
+    <dl class="headers">
+      <dt>From</dt><dd>${esc(e.name)} &lt;${esc(e.sender)}&gt;</dd>
+      <dt>Subject</dt><dd>${esc(e.subject)}</dd>
+      <dt>Return-Path</dt>${hv("Return-Path", e.return_path)}
+      <dt>Reply-To</dt>${hv("Reply-To", e.reply_to)}
+    </dl>
+    ${e.alerts.length ? `<div class="alerts">${e.alerts.map(([h, d, s]) =>
+      `<div class="alert"><strong>${h}</strong> pointe vers <code>${esc(d)}</code>, alors que l'expéditeur est sur <code>${esc(s)}</code>.</div>`).join("")}</div>` : ""}
+    <p class="msg">${linkify(e.message)}</p>
+    <div class="note">Courriel #${e.id} sur ${EMAILS.length} · étiquette attendue dans le jeu de test : <code>${e.label}</code></div>`;
+  $("#back").onclick = () => { $("#client").classList.remove("reading"); };
+}
+
+function render() { renderFilters(); renderList(); renderReader(); }
+
+$("#filters").addEventListener("click", ev => {
+  const b = ev.target.closest("button[data-f]"); if (!b) return;
+  filter = b.dataset.f;
+  const v = visible(); if (v.length && !v.some(e => e.id === selected)) selected = v[0].id;
+  render();
+});
+$("#q").addEventListener("input", ev => { query = ev.target.value; renderList(); });
+function pick(li) { if (!li) return; selected = +li.dataset.id; renderList(); renderReader(); $("#client").classList.add("reading"); }
+$("#list").addEventListener("click", ev => pick(ev.target.closest(".item")));
+$("#list").addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(ev.target.closest(".item")); } });
+
+render();
+</script>

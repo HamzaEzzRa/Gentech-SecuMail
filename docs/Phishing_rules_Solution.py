@@ -19,9 +19,21 @@ import re
 # ==========================================================================
 
 MOTS_APPAT = [
-    "security", "securite", "login", "verify", "verification",
-    "account", "compte", "update", "billing", "suivi",
-    "remboursement", "support", "alert", "secure", "signin",
+    "security",
+    "securite",
+    "login",
+    "verify",
+    "verification",
+    "account",
+    "compte",
+    "update",
+    "billing",
+    "suivi",
+    "remboursement",
+    "support",
+    "alert",
+    "secure",
+    "signin",
 ]
 
 EXTENSIONS_RISQUE = [".xyz", ".tk", ".top", ".info", ".gq", ".ml", ".cf"]
@@ -43,9 +55,11 @@ def charger_domaines_officiels(chemin="domaines_officiels.csv"):
     with open(chemin, encoding="utf-8") as f:
         for ligne in csv.DictReader(f):
             marque = ligne["marque"].strip().lower()
-            domaines = [d.strip().lower()
-                        for d in ligne["domaines_officiels"].split(",")
-                        if d.strip()]
+            domaines = [
+                d.strip().lower()
+                for d in ligne["domaines_officiels"].split(",")
+                if d.strip()
+            ]
             table[marque] = domaines
     return table
 
@@ -64,6 +78,7 @@ def extraire_urls(texte):
 #  COMPOSANTE 1.1 — CLASSIFICATION DES DOMAINES
 # ==========================================================================
 
+
 def extraire_domaine_adresse(adresse):
     """
     Domaine d'une adresse courriel, en minuscules.
@@ -81,7 +96,7 @@ def extraire_domaine_adresse(adresse):
     if "@" not in texte:
         return ""
 
-    domaine = texte.split("@")[-1]          # tout ce qui suit le dernier @
+    domaine = texte.split("@")[-1]  # tout ce qui suit le dernier @
     domaine = domaine.strip().strip("<>").strip()
     return domaine.lower()
 
@@ -102,15 +117,15 @@ def extraire_domaine_url(url):
     reste = str(url).strip()
     for prefixe in ("https://", "http://"):
         if reste.lower().startswith(prefixe):
-            reste = reste[len(prefixe):]
+            reste = reste[len(prefixe) :]
             break
 
-    reste = reste.split("/")[0]             # on jette le chemin
-    reste = reste.split("?")[0]             # ... et les parametres
-    reste = reste.split("#")[0]             # ... et l'ancre
-    if "@" in reste:                        # http://user:pass@site.com
+    reste = reste.split("/")[0]  # on jette le chemin
+    reste = reste.split("?")[0]  # ... et les parametres
+    reste = reste.split("#")[0]  # ... et l'ancre
+    if "@" in reste:  # http://user:pass@site.com
         reste = reste.split("@")[-1]
-    reste = reste.split(":")[0]             # ... et le :port
+    reste = reste.split(":")[0]  # ... et le :port
     return reste.strip().lower()
 
 
@@ -199,18 +214,20 @@ def regle_substitution(domaine, marques_connues):
 
     # Vérifier chaque marque
     for marque in marques_connues:
-
         marque = str(marque).lower()
 
         if marque in corrige and marque not in original:
-            return 30, (f"Substitution de caracteres : « {original} » "
-                        f"imite « {marque} » (lu : « {corrige} »)")
+            return 30, (
+                f"Substitution de caracteres : « {original} » "
+                f"imite « {marque} » (lu : « {corrige} »)"
+            )
     return 0, ""
 
 
 # ==========================================================================
 #  COMPOSANTE 1.2 — ANALYSE DES LIENS
 # ==========================================================================
+
 
 def marque_annoncee(courriel, marques_connues):
     """
@@ -239,7 +256,6 @@ def marque_annoncee(courriel, marques_connues):
     texte = texte.lower()
 
     for marque in marques_connues:
-
         marque = str(marque).lower()
 
         if marque:
@@ -318,8 +334,7 @@ def regle_lien_raccourcisseur(url):
     if not domaine:
         return 0, ""
 
-    if domaine.startswith("www."):
-        domaine = domaine[4:]
+    domaine = domaine.removeprefix("www.")
 
     if domaine in RACCOURCISSEURS:
         return 15, f"Lien raccourci ({domaine}) : destination masquee"
@@ -345,6 +360,7 @@ def regle_lien_sans_https(url):
 # ==========================================================================
 #  COMPOSANTE 1.3 — NOM AFFICHÉ vs ADRESSE D'ENVOI
 # ==========================================================================
+
 
 def marque_dans_nom(nom_affiche, marques_connues):
     """
@@ -409,6 +425,7 @@ def regle_nom_vs_adresse(nom_affiche, adresse, table_marques):
 #  COMPOSANTE 1.4 — EN-TÊTES TECHNIQUES
 # ==========================================================================
 
+
 def regle_return_path(entete_from, entete_return_path):
     """
     +15 si le domaine de From diffère de celui de Return-Path.
@@ -432,8 +449,10 @@ def regle_return_path(entete_from, entete_return_path):
         return 0, ""
 
     if domaine_from != domaine_retour:
-        return 15, (f"Return-Path divergent : envoi reel depuis "
-                    f"« {domaine_retour} » et non « {domaine_from} »")
+        return 15, (
+            f"Return-Path divergent : envoi reel depuis "
+            f"« {domaine_retour} » et non « {domaine_from} »"
+        )
     return 0, ""
 
 
@@ -455,14 +474,17 @@ def regle_reply_to(entete_from, entete_reply_to):
         return 0, ""
 
     if domaine_from != domaine_reponse:
-        return 15, (f"Reply-To detourne : les reponses partiraient vers "
-                    f"« {domaine_reponse} » et non « {domaine_from} »")
+        return 15, (
+            f"Reply-To detourne : les reponses partiraient vers "
+            f"« {domaine_reponse} » et non « {domaine_from} »"
+        )
     return 0, ""
 
 
 # ==========================================================================
 #  ASSEMBLAGE  (fourni — ne pas modifier)
 # ==========================================================================
+
 
 def _ajouter(resultats, couple):
     """Ajoute (points, explication) au bilan, en ignorant les None."""
@@ -504,13 +526,21 @@ def analyser_phishing(courriel, table_marques):
         _ajouter(details, regle_lien_sans_https(url))
 
     # Composante 1.3 — nom affiché vs adresse
-    _ajouter(details, regle_nom_vs_adresse(
-        courriel.get("name", ""), courriel.get("sender", ""), table_marques))
+    _ajouter(
+        details,
+        regle_nom_vs_adresse(
+            courriel.get("name", ""), courriel.get("sender", ""), table_marques
+        ),
+    )
 
     # Composante 1.4 — en-têtes
-    _ajouter(details, regle_return_path(
-        courriel.get("sender", ""), courriel.get("return_path", "")))
-    _ajouter(details, regle_reply_to(
-        courriel.get("sender", ""), courriel.get("reply_to", "")))
+    _ajouter(
+        details,
+        regle_return_path(courriel.get("sender", ""), courriel.get("return_path", "")),
+    )
+    _ajouter(
+        details,
+        regle_reply_to(courriel.get("sender", ""), courriel.get("reply_to", "")),
+    )
 
     return sum(p for p, _ in details), details

@@ -49,3 +49,6 @@ venv.bak/
 # Others
 .vscode/
 .idea/
+
+# Hidden test answer keys
+*_test_labels.csv

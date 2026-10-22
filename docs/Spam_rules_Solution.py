@@ -1,13 +1,12 @@
-
 import re
 import unicodedata
 
 from phishing_rules import extraire_urls
 
-
 # ==========================================================================
 #  OUTIL COMMUN — NORMALISATION
 # ==========================================================================
+
 
 def normaliser(texte):
     """
@@ -23,8 +22,7 @@ def normaliser(texte):
     if not texte:
         return ""
     decompose = unicodedata.normalize("NFD", str(texte))
-    sans_accent = "".join(c for c in decompose
-                          if unicodedata.category(c) != "Mn")
+    sans_accent = "".join(c for c in decompose if unicodedata.category(c) != "Mn")
     return unicodedata.normalize("NFC", sans_accent).lower()
 
 
@@ -41,26 +39,73 @@ def normaliser(texte):
 
 MOTS_COMMERCIAUX = [
     # --- gratuité / appât ---
-    "free", "gratuit", "gratuite", "gratuitement", "cadeau", "bonus",
+    "free",
+    "gratuit",
+    "gratuite",
+    "gratuitement",
+    "cadeau",
+    "bonus",
     # --- gain / loterie ---
-    "win", "winner", "gagnez", "gagnant", "prize", "tirage", "loterie",
-    "jackpot", "felicitations", "congratulations",
+    "win",
+    "winner",
+    "gagnez",
+    "gagnant",
+    "prize",
+    "tirage",
+    "loterie",
+    "jackpot",
+    "felicitations",
+    "congratulations",
     # --- offre / promotion ---
-    "offer", "offre", "promo", "promotion", "deal", "aubaine",
-    "exclusive", "exclusif", "exclusivite",
+    "offer",
+    "offre",
+    "promo",
+    "promotion",
+    "deal",
+    "aubaine",
+    "exclusive",
+    "exclusif",
+    "exclusivite",
     # --- prix / réduction ---
-    "discount", "rabais", "reduction", "solde", "soldes", "liquidation",
-    "remise", "coupon", "economisez", "save",
+    "discount",
+    "rabais",
+    "reduction",
+    "solde",
+    "soldes",
+    "liquidation",
+    "remise",
+    "coupon",
+    "economisez",
+    "save",
     # --- injonction commerciale ---
-    "achetez", "commandez", "buy", "order", "shop", "abonnez",
-    "souscrivez", "inscrivez",
+    "achetez",
+    "commandez",
+    "buy",
+    "order",
+    "shop",
+    "abonnez",
+    "souscrivez",
+    "inscrivez",
     # --- argent ---
-    "cash", "argent", "revenu", "income", "investissement", "credit",
-    "million", "millionnaire",
+    "cash",
+    "argent",
+    "revenu",
+    "income",
+    "investissement",
+    "credit",
+    "million",
+    "millionnaire",
     # --- logistique commerciale ---
-    "livraison", "shipping", "stock", "stocks",
+    "livraison",
+    "shipping",
+    "stock",
+    "stocks",
     # --- mécanique du pourriel ---
-    "desabonner", "unsubscribe", "viagra", "casino", "pharmacie",
+    "desabonner",
+    "unsubscribe",
+    "viagra",
+    "casino",
+    "pharmacie",
 ]
 
 
@@ -88,16 +133,19 @@ def regle_mots_commerciaux(texte, points_par_mot=3, plafond=15):
         if not mot_normalise:
             continue
         motif = r"\b" + re.escape(mot_normalise) + r"\b"
-        if re.search(motif, texte_normalise):
-            if mot_normalise not in trouves:      # distinct : une seule fois
-                trouves.append(mot_normalise)
+        if (
+            re.search(motif, texte_normalise)
+            and mot_normalise not in trouves  # distinct : une seule fois
+        ):
+            trouves.append(mot_normalise)
 
     if not trouves:
         return 0, ""
 
     points = min(len(trouves) * points_par_mot, plafond)
-    explication = (f"{len(trouves)} mot(s) commercial(aux) : "
-                   f"{', '.join(sorted(trouves))}")
+    explication = (
+        f"{len(trouves)} mot(s) commercial(aux) : {', '.join(sorted(trouves))}"
+    )
     if len(trouves) * points_par_mot > plafond:
         explication += f" (plafonne a {plafond})"
     return points, explication
@@ -106,6 +154,7 @@ def regle_mots_commerciaux(texte, points_par_mot=3, plafond=15):
 # ==========================================================================
 #  COMPOSANTE 2.2 — EXCÈS DE MAJUSCULES
 # ==========================================================================
+
 
 def ratio_majuscules(texte):
     """
@@ -141,12 +190,14 @@ def regle_majuscules(texte, seuil=0.40, longueur_min=20):
 
     nb_lettres = sum(1 for c in str(texte) if c.isalpha())
     if nb_lettres < longueur_min:
-        return 0, ""                      # trop court : aucune conclusion
+        return 0, ""  # trop court : aucune conclusion
 
     ratio = ratio_majuscules(texte)
     if ratio > seuil:
-        return 10, (f"Exces de majuscules : {ratio:.0%} des {nb_lettres} "
-                    f"lettres (seuil {seuil:.0%})")
+        return 10, (
+            f"Exces de majuscules : {ratio:.0%} des {nb_lettres} "
+            f"lettres (seuil {seuil:.0%})"
+        )
     return 0, ""
 
 
@@ -168,14 +219,14 @@ MOTIFS_PROMO = [
     r"-?\s?\d{1,3}\s?%\s?(de\s+)?(rabais|off|reduction|remise|moins)\b",
     r"jusqu'?a\s+-?\s?\d{1,3}\s?%",
     r"(economisez|save)\s+(jusqu'?a\s+|up\s+to\s+)?-?\s?\d",
-
     # injonction d'achat
     r"achetez\s+(des\s+)?(maintenant|aujourd'?hui|vite)",
     r"buy\s+now",
-    r"(commandez|profitez|reservez|inscrivez-vous|cliquez)\s+"
-    r"(en\s+|y\s+|des\s+)?(maintenant|aujourd'?hui|vite|ici|sans\s+tarder)",
+    (
+        r"(commandez|profitez|reservez|inscrivez-vous|cliquez)\s+"
+        r"(en\s+|y\s+|des\s+)?(maintenant|aujourd'?hui|vite|ici|sans\s+tarder)"
+    ),
     r"(order|shop|click|act|subscribe)\s+now",
-
     # rareté artificielle
     r"offre\s+(limitee|exclusive|speciale|du\s+jour|a\s+ne\s+pas\s+manquer)",
     r"(stocks?|places?|quantites?|temps)\s+limitees?",
@@ -183,18 +234,15 @@ MOTIFS_PROMO = [
     r"derni(er|ere)s?\s+(chance|jours?|heures?|minutes?)",
     r"ne\s+manquez\s+pas\s+(cette|notre|ce)",
     r"(se\s+termine|expire)\s+(ce\s+soir|aujourd'?hui|demain|dans\s+\d)",
-
     # gratuité mise en avant
     r"(100\s?%|totalement|entierement)\s+gratuit",
     r"free\s+(gift|trial|shipping|offer|access|sample)",
     r"livraison\s+gratuite",
     r"essai\s+gratuit",
-
     # gain annoncé
     r"vous\s+avez\s+(gagne|ete\s+selectionne)",
     r"(gagnez|gagner)\s+(un|une|des|jusqu)",
     r"you\s+(have\s+)?won\b",
-
     # argument de prix
     r"(prix|tarif)s?\s+(imbattables?|casses?|reduits?|exceptionnels?)",
     r"meilleur\s+prix",
@@ -228,6 +276,7 @@ def regle_formulation_promo(texte):
 #  COMPOSANTE 2.4 — SIGNAUX COMPLÉMENTAIRES
 # ==========================================================================
 
+
 def regle_exclamations(texte, seuil=3):
     """+5 si le texte contient au moins `seuil` points d'exclamation."""
     if not texte:
@@ -257,6 +306,7 @@ def regle_nombre_liens(texte, seuil=3):
 # ==========================================================================
 #  ASSEMBLAGE  (fourni — ne pas modifier)
 # ==========================================================================
+
 
 def _ajouter(resultats, couple):
     if not couple:

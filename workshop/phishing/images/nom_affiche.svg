@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="623.104" height="372" viewBox="0 0 623.104 372" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<text x="20" y="30" font-size="20" text-anchor="start" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >Ce que vous voyez</text>
+<rect x="20" y="46" width="420" height="128" rx="8" fill="#fff" stroke="#8a8986" stroke-width="1.5"/><circle cx="58" cy="84" r="22" fill="#b9b8b3"/><text x="58" y="90" font-size="16" text-anchor="middle" font-weight="bold" fill="#fff" font-family="Helvetica, Arial, sans-serif" >IS</text><text x="94" y="91" font-size="18" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Instagram Support</text><path d="M34,120 H426" stroke="#d6d5d0"/><text x="34" y="150" font-size="18" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >URGENT : ton compte sera SUPPRIMÉ !!!</text>
+<text x="20" y="210" font-size="20" text-anchor="start" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >Ce que la machine lit</text>
+<rect x="14" y="232" width="589.104" height="44" rx="6" fill="#f1f0ec" stroke="#8a8986" stroke-width="1"/>
+<rect x="81.404" y="241" width="194.446" height="28" fill="#fdf0d2" stroke="#eda100" rx="4"/>
+<rect x="490.764" y="241" width="92.106" height="28" fill="#fde3e3" stroke="#e34948" rx="4"/>
+<text x="20" y="262" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >From: &quot;Instagram Support&quot; &lt;instagram.help2024@gmail.com&gt;</text>
+<path d="M178.627,312 L178.627,276" stroke="#8a5a00" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+<text x="178.627" y="336" font-size="17" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >un déguisement :</text>
+<text x="178.627" y="358" font-size="17" text-anchor="middle" font-weight="normal" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >n&#x27;importe qui peut l&#x27;écrire</text>
+<path d="M536.817,312 L536.817,276" stroke="#b3261e" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+<text x="536.817" y="336" font-size="17" text-anchor="middle" font-weight="bold" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >la vraie identité :</text>
+<text x="536.817" y="358" font-size="17" text-anchor="middle" font-weight="normal" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >après le @</text>
+</svg>

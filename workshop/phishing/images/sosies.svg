@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730" height="300" viewBox="0 0 730 300" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<text x="170" y="34" font-size="20" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >Le vrai</text>
+<text x="560" y="34" font-size="20" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >Le sosie</text>
+<rect x="30" y="56" width="280" height="62" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="2"/>
+<text x="170" y="100" font-size="38" text-anchor="middle" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >amazon</text>
+<text x="365" y="94" font-size="38" text-anchor="middle" font-weight="normal" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >≈</text>
+<rect x="420" y="56" width="280" height="62" rx="12" fill="#fde3e3" stroke="#e34948" stroke-width="2"/>
+<text x="560" y="100" font-size="38" text-anchor="middle">amaz<tspan fill="#b3261e" text-decoration="underline">0</tspan>n</text>
+<rect x="30" y="130" width="280" height="62" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="2"/>
+<text x="170" y="174" font-size="38" text-anchor="middle" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >microsoft</text>
+<text x="365" y="168" font-size="38" text-anchor="middle" font-weight="normal" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >≈</text>
+<rect x="420" y="130" width="280" height="62" rx="12" fill="#fde3e3" stroke="#e34948" stroke-width="2"/>
+<text x="560" y="174" font-size="38" text-anchor="middle"><tspan fill="#b3261e" text-decoration="underline">rn</tspan>icrosoft</text>
+<rect x="30" y="204" width="280" height="62" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="2"/>
+<text x="170" y="248" font-size="38" text-anchor="middle" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >paypal</text>
+<text x="365" y="242" font-size="38" text-anchor="middle" font-weight="normal" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >≈</text>
+<rect x="420" y="204" width="280" height="62" rx="12" fill="#fde3e3" stroke="#e34948" stroke-width="2"/>
+<text x="560" y="248" font-size="38" text-anchor="middle">paypa<tspan fill="#b3261e" text-decoration="underline">1</tspan></text>
+</svg>

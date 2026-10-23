@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="434" viewBox="0 0 780 434" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<rect x="10" y="10" width="760" height="34" fill="#e6e5e1"/>
+<text x="24" y="33" font-size="15" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Boîte de réception · 10 courriels déjà triés</text>
+<rect x="10" y="44" width="760" height="38" fill="#fbfaf7"/>
+<rect x="22" y="51" width="104" height="24" rx="12" fill="#fdf0d2" stroke="#eda100" stroke-width="1.5"/>
+<text x="74" y="69" font-size="15" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >SPAM</text>
+<text x="142" y="69" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Gagnez un iPhone gratuit, cliquez ici !</text>
+<rect x="10" y="82" width="760" height="38" fill="#fff"/>
+<rect x="22" y="89" width="104" height="24" rx="12" fill="#fdf0d2" stroke="#eda100" stroke-width="1.5"/>
+<text x="74" y="107" font-size="15" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >SPAM</text>
+<text x="142" y="107" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Cadeau gratuit pour vous : profitez-en vite.</text>
+<rect x="10" y="120" width="760" height="38" fill="#fbfaf7"/>
+<rect x="22" y="127" width="104" height="24" rx="12" fill="#fdf0d2" stroke="#eda100" stroke-width="1.5"/>
+<text x="74" y="145" font-size="15" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >SPAM</text>
+<text x="142" y="145" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Votre essai gratuit expire demain, cliquez ici.</text>
+<rect x="10" y="158" width="760" height="38" fill="#fff"/>
+<rect x="22" y="165" width="104" height="24" rx="12" fill="#fdf0d2" stroke="#eda100" stroke-width="1.5"/>
+<text x="74" y="183" font-size="15" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >SPAM</text>
+<text x="142" y="183" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Votre cadeau vous attend, cliquez maintenant.</text>
+<rect x="10" y="196" width="760" height="38" fill="#fbfaf7"/>
+<rect x="22" y="203" width="104" height="24" rx="12" fill="#fdf0d2" stroke="#eda100" stroke-width="1.5"/>
+<text x="74" y="221" font-size="15" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >SPAM</text>
+<text x="142" y="221" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Offre limitée : soldes sur tout le magasin.</text>
+<rect x="10" y="234" width="760" height="38" fill="#fff"/>
+<rect x="22" y="241" width="104" height="24" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="74" y="259" font-size="15" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >LÉGITIME</text>
+<text x="142" y="259" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >La réunion de demain est reportée à 14 h.</text>
+<rect x="10" y="272" width="760" height="38" fill="#fbfaf7"/>
+<rect x="22" y="279" width="104" height="24" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="74" y="297" font-size="15" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >LÉGITIME</text>
+<text x="142" y="297" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Rappel : réunion du club demain midi.</text>
+<rect x="10" y="310" width="760" height="38" fill="#fff"/>
+<rect x="22" y="317" width="104" height="24" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="74" y="335" font-size="15" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >LÉGITIME</text>
+<text x="142" y="335" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Votre facture est disponible dans votre espace client.</text>
+<rect x="10" y="348" width="760" height="38" fill="#fbfaf7"/>
+<rect x="22" y="355" width="104" height="24" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="74" y="373" font-size="15" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >LÉGITIME</text>
+<text x="142" y="373" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Les photos de la réunion sont en ligne, cliquez ici.</text>
+<rect x="10" y="386" width="760" height="38" fill="#fff"/>
+<rect x="22" y="393" width="104" height="24" rx="12" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="74" y="411" font-size="15" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >LÉGITIME</text>
+<text x="142" y="411" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >Votre sortie de demain est confirmée, apportez un lunch.</text>
+<rect x="10" y="10" width="760" height="414" rx="8" fill="none" stroke="#8a8986" stroke-width="1.5"/>
+</svg>

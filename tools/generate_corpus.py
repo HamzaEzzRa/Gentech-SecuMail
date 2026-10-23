@@ -1,6 +1,7 @@
 """Labelled email corpus (ham, spam, phishing) as CSV.
 
-    python tools/generate_corpus.py --ham 400 --spam 300 --phishing 300
+    python tools/generate_corpus.py --ham 400 --spam 300 --phishing 300 \
+        --test-share 0.3 -o data/emails_train.csv
 
 Template syntax:
     [a|b]   random option per occurrence, nestable
@@ -18,7 +19,7 @@ from collections import Counter
 from itertools import zip_longest
 from pathlib import Path
 
-DATASETS = Path(__file__).resolve().parent.parent / "datasets"
+DATASETS = Path(__file__).resolve().parent.parent / "data"
 
 SCHOOL_DOMAIN = "dessources.qc.ca"
 
@@ -560,6 +561,60 @@ HAM = [
         "Mettez-le à jour sur outlook.live.com lorsque vous aurez le temps."
         "\n\nMicrosoft",
         "noreply@microsoftonline.com",
+    ),
+    # teen platforms, official domains
+    email(
+        "security@mail.instagram.com",
+        "Instagram",
+        "Nouvelle connexion à ton compte",
+        "{hello} nous avons remarqué une connexion à ton compte Instagram depuis "
+        "[un iPhone|un appareil Android|Chrome sur Windows] [à {time}|le {date}]. "
+        "Si c'était toi, aucune action n'est requise.\n\nL'équipe Instagram",
+        "security@mail.instagram.com",
+    ),
+    email(
+        "noreply@discord.com",
+        "Discord",
+        "Vérifie ton adresse courriel",
+        "{hello} merci d'avoir créé un compte Discord ! Vérifie ton adresse sur "
+        "https://discord.com/verify[| pour rejoindre ton premier serveur| avant "
+        "{day}].\n\nDiscord",
+        "noreply@discord.com",
+    ),
+    email(
+        "no-reply@roblox.com",
+        "Roblox",
+        "Reçu de ton achat",
+        "{hello} merci pour ton achat de [400|800|1700] Robux ({amount}). Les Robux "
+        "ont été ajoutés à ton compte[| le {date}].\n\nRoblox",
+        "no-reply@roblox.com",
+    ),
+    email(
+        "no_reply@snapchat.com",
+        "Équipe Snapchat",
+        "Ton code de vérification",
+        "{hello} ton code de vérification Snapchat est {n4}. Ne le partage avec "
+        "personne[, même pas avec un ami|. Snapchat ne te le demandera jamais]."
+        "\n\nÉquipe Snapchat",
+        "no_reply@snapchat.com",
+    ),
+    email(
+        "noreply@minecraft.net",
+        "Minecraft",
+        "[Bienvenue sur Minecraft|Ton compte Minecraft est prêt]",
+        "{hello} ton compte Minecraft est prêt. [Télécharge le lanceur|Consulte "
+        "les nouveautés de la mise à jour] sur https://www.minecraft.net[| quand tu "
+        "veux].\n\nL'équipe Minecraft",
+        "noreply@minecraft.net",
+    ),
+    email(
+        "suivi@purolator.com",
+        "Purolator",
+        "Ton colis est en route",
+        "{hello} le colis {track} est en route. Livraison prévue le {date}"
+        "[| entre 9 h et 17 h]. Suivi : https://www.purolator.com/fr/suivi-de-colis"
+        "\n\nPurolator",
+        "suivi@purolator.com",
     ),
     # newsletter
     with_bounce(
@@ -1752,6 +1807,84 @@ PHISHING = [
         "{hello} votre dossier [n° {order} |]est en cours de traitement. Les "
         "documents demandés ont bien été reçus. Merci de votre collaboration.",
     ),
+    # teen platforms
+    email(
+        "securite@instagram-securite-compte.info",
+        "Instagram Support",
+        "Ton compte sera supprimé",
+        "Salut, nous avons détecté une connexion inhabituelle sur ton compte "
+        "Instagram[| depuis un nouvel appareil]. Ton compte sera supprimé dans "
+        "{hours} heures si tu ne confirmes pas ton identité : "
+        "http://instagram.com.securite-compte.info/verify\n\nL'équipe Instagram",
+    ),
+    email(
+        "nitro@disc0rd-nitro-gratuit.tk",
+        "Discord",
+        "Ton Nitro gratuit t'attend",
+        "Salut ! Discord t'offre [1 mois|3 mois] de Nitro gratuit[| pour fêter ton "
+        "anniversaire sur la plateforme]. Réclame-le avant [minuit|{day}] : "
+        "http://disc0rd-nitro-gratuit.tk/claim\n\nDiscord",
+    ),
+    email(
+        "support@rob1ox.com",
+        "Roblox",
+        "[800|1700|4500] Robux gratuits pour toi",
+        "Félicitations ! Ton compte a été sélectionné pour recevoir des Robux "
+        "gratuits. Connecte-toi [ici|maintenant] pour les recevoir : "
+        "http://rob1ox-freerobux.top/signin\n\nRoblox",
+    ),
+    email(
+        "securite@5napchat-login.top",
+        "Équipe Snapchat",
+        "Quelqu'un a essayé de se connecter",
+        "Salut, quelqu'un a essayé de se connecter à ton compte Snapchat[| à "
+        "{time}| le {date}]. Si ce n'était pas toi, sécurise ton compte : "
+        "http://5napchat-login.top/secure\n\nÉquipe Snapchat",
+    ),
+    email(
+        "steam.support.verify{n3}@gmail.com",
+        "Steam Support",
+        "Échange signalé sur ton compte",
+        "Salut, un échange d'objets a été signalé sur ton compte Steam. Confirme ton "
+        "identité dans les {hours} heures, sinon ton inventaire sera bloqué : "
+        "https://bit.ly/{code}",
+    ),
+    email(
+        "compte@minecraft.net",
+        "Minecraft",
+        "Migration obligatoire de ton compte",
+        "Salut, ton compte Minecraft doit être migré avant le {date}. Réponds à ce "
+        "courriel avec ton nom d'utilisateur et ton mot de passe pour garder tes "
+        "mondes[| et tes skins].\n\nL'équipe Minecraft",
+        "<bounce{n4}@relais-marketing.info>",
+        "<migration@minecraft-comptes.info>",
+    ),
+    # compromised school accounts: real sender, malicious body
+    email(
+        "{student[email]}",
+        "{student[name]}",
+        "[Regarde ça|C'est toi sur la photo ?|lol c'est toi ?]",
+        "[Salut|Allo] ! [Quelqu'un a publié une photo de toi|Il y a une vidéo de "
+        "toi qui circule], regarde vite : http://instagrarn-photos.info/p/{code}",
+        "{student[email]}",
+    ),
+    email(
+        "{teacher[email]}",
+        "{teacher[name]}",
+        "Document partagé : notes de {course}",
+        "{hello} je vous partage le document des notes de {course}. Connectez-vous "
+        "avec votre compte scolaire pour le consulter : "
+        "http://{ip}/partage/notes\n\n{teacher[name]}",
+        "{teacher[email]}",
+    ),
+    email(
+        "{student[email]}",
+        "{student[name]}",
+        "Vote pour moi stp",
+        "Allo ! Je participe à un concours [de dessin|de photo|de danse], vote pour "
+        "moi stp ! Il faut juste te connecter avec ton compte Instagram : "
+        "https://tinyurl.com/{code}",
+    ),
     # school
     email(
         "securite@dessources-verification.xyz",
@@ -1875,7 +2008,7 @@ def main():
         help="share of each label moved to a test set from held-out templates",
     )
     parser.add_argument(
-        "-o", "--output", type=Path, help="default: datasets/emails_<total>.csv"
+        "-o", "--output", type=Path, help="default: data/emails_<total>.csv"
     )
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
@@ -1904,8 +2037,9 @@ def main():
         for i, row in enumerate(test, 1):
             row["id"] = i
         counts = {k: n - test_counts[k] for k, n in counts.items()}
-        test_path = output.with_name(f"{output.stem}_test.csv")
-        key_path = output.with_name(f"{output.stem}_test_labels.csv")
+        test_stem = output.stem.removesuffix("_train") + "_test"
+        test_path = output.with_name(f"{test_stem}.csv")
+        key_path = output.with_name(f"{test_stem}_labels.csv")
         write(test_path, test, ["id", *HEADERS])
         write(key_path, test, ["id", "label"])
     else:

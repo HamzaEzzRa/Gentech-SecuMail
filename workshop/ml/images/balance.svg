@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<path d="M360,70 L310,300 H410 Z" fill="#f1f0ec" stroke="#1d1d1b" stroke-width="2.5"/>
+<path d="M140,110 L580,30" stroke="#1d1d1b" stroke-width="6" stroke-linecap="round"/>
+<circle cx="360" cy="70" r="9" fill="#1d1d1b"/>
+<path d="M140,110 L70,200 M140,110 L210,200" stroke="#8a8986" stroke-width="2"/>
+<path d="M50,200 H230 Q140,250 50,200 Z" fill="#fdf0d2" stroke="#eda100" stroke-width="2.5"/>
+<rect x="78" y="158" width="58" height="38" rx="6" fill="#fff" stroke="#1d1d1b" stroke-width="2"/><path d="M81,162 L107.0,178.9 L133,162" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<rect x="144" y="158" width="58" height="38" rx="6" fill="#fff" stroke="#1d1d1b" stroke-width="2"/><path d="M147,162 L173.0,178.9 L199,162" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<text x="140" y="280" font-size="20" text-anchor="middle" font-weight="bold" fill="#8a5a00" font-family="Helvetica, Arial, sans-serif" >2 spams</text>
+<text x="140" y="304" font-size="16" text-anchor="middle" font-weight="normal" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >avec « cadeau »</text>
+<path d="M580,30 L510,120 M580,30 L650,120" stroke="#8a8986" stroke-width="2"/>
+<path d="M490,120 H670 Q580,170 490,120 Z" fill="#e2f5ec" stroke="#1baf7a" stroke-width="2.5"/>
+<text x="580" y="200" font-size="20" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >0 légitimes</text>
+<text x="580" y="224" font-size="16" text-anchor="middle" font-weight="normal" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >avec « cadeau »</text>
+</svg>

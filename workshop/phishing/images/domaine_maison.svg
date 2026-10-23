@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<text x="640" y="26" font-size="17" text-anchor="end" font-weight="normal" fill="#1a56a0" font-family="Helvetica, Arial, sans-serif" >on lit dans ce sens</text>
+<path d="M640,42 L60,42" stroke="#2a78d6" stroke-width="2.5" fill="none" marker-end="url(#fl)"/>
+<rect x="36" y="132" width="101.91199999999999" height="42" rx="6" fill="#f1f0ec" stroke="#8a8986" stroke-width="2"/>
+<text x="40" y="160" font-size="26" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >accesd</text>
+<text x="86.95599999999999" y="200" font-size="16" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >une pièce</text>
+<text x="151.91199999999998" y="160" font-size="26" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >.</text>
+<rect x="173.56399999999996" y="132" width="164.51999999999998" height="42" rx="6" fill="#e5effb" stroke="#2a78d6" stroke-width="2"/>
+<text x="177.56399999999996" y="160" font-size="26" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >desjardins</text>
+<text x="255.82399999999996" y="200" font-size="16" text-anchor="middle" font-weight="bold" fill="#1a56a0" font-family="Helvetica, Arial, sans-serif" >la maison</text>
+<text x="255.82399999999996" y="221" font-size="16" text-anchor="middle" font-weight="bold" fill="#1a56a0" font-family="Helvetica, Arial, sans-serif" >de Desjardins</text>
+<path d="M221.82399999999996,90 L255.82399999999996,64 L289.82399999999996,90" fill="none" stroke="#2a78d6" stroke-width="3" stroke-linejoin="round"/><rect x="229.82399999999996" y="86" width="52" height="34" fill="#e5effb" stroke="#2a78d6" stroke-width="3"/><rect x="248.82399999999996" y="100" width="14" height="20" fill="#2a78d6"/>
+<text x="352.08399999999995" y="160" font-size="26" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >.</text>
+<rect x="373.73599999999993" y="132" width="54.955999999999996" height="42" rx="6" fill="#f1f0ec" stroke="#8a8986" stroke-width="2"/>
+<text x="377.73599999999993" y="160" font-size="26" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >com</text>
+<text x="401.21399999999994" y="200" font-size="16" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >le quartier</text>
+<rect x="36" y="322" width="227.128" height="42" rx="6" fill="#f1f0ec" stroke="#8a8986" stroke-width="2"/>
+<text x="40" y="350" font-size="26" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >desjardins.com</text>
+<text x="149.564" y="390" font-size="16" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >une pièce</text>
+<text x="149.564" y="411" font-size="16" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >déguisée</text>
+<text x="277.128" y="350" font-size="26" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >.</text>
+<rect x="298.78" y="322" width="242.78" height="42" rx="6" fill="#fde3e3" stroke="#e34948" stroke-width="2"/>
+<text x="302.78" y="350" font-size="26" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >securite-client</text>
+<text x="420.16999999999996" y="390" font-size="16" text-anchor="middle" font-weight="bold" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >la maison</text>
+<text x="420.16999999999996" y="411" font-size="16" text-anchor="middle" font-weight="bold" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >du fraudeur !</text>
+<path d="M386.16999999999996,280 L420.16999999999996,254 L454.16999999999996,280" fill="none" stroke="#e34948" stroke-width="3" stroke-linejoin="round"/><rect x="394.16999999999996" y="276" width="52" height="34" fill="#fde3e3" stroke="#e34948" stroke-width="3"/><rect x="413.16999999999996" y="290" width="14" height="20" fill="#e34948"/>
+<text x="555.56" y="350" font-size="26" text-anchor="start" font-weight="bold" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >.</text>
+<rect x="577.212" y="322" width="54.955999999999996" height="42" rx="6" fill="#f1f0ec" stroke="#8a8986" stroke-width="2"/>
+<text x="581.212" y="350" font-size="26" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >xyz</text>
+<text x="604.6899999999999" y="390" font-size="16" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >le quartier</text>
+</svg>

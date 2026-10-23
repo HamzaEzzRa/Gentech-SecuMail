@@ -7,4 +7,12 @@ requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
-dev = ["pre-commit>=4.6.2", "ruff>=0.16.8"]
+dev = [
+    "nbconvert>=7.17.2",
+    "pre-commit>=4.6.2",
+    "ruff>=0.16.8",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Helpers are imported for students before their code uses them.
+"homework/*" = ["F401"]

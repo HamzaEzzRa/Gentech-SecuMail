@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="340" viewBox="0 0 840 340" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<rect x="20" y="120" width="450" height="190" rx="6" fill="#faf8f2" stroke="#1d1d1b" stroke-width="2"/><path d="M23,124 L245.0,224.5 L467,124" fill="none" stroke="#1d1d1b" stroke-width="2"/>
+<text x="36" y="290" font-size="14" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >Retour : bounce-4471@infolettre-cuisine.com</text>
+<rect x="110" y="20" width="260" height="170" rx="4" fill="#fff" stroke="#1d1d1b" stroke-width="2"/>
+<text x="126" y="52" font-size="15" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >De : info@</text>
+<text x="126" y="74" font-size="15" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" >infolettre-cuisine.com</text>
+<path d="M126,104 H350" stroke="#c9c8c3" stroke-width="5" stroke-linecap="round"/>
+<path d="M126,122 H300" stroke="#c9c8c3" stroke-width="5" stroke-linecap="round"/>
+<path d="M126,140 H350" stroke="#c9c8c3" stroke-width="5" stroke-linecap="round"/>
+<path d="M126,158 H300" stroke="#c9c8c3" stroke-width="5" stroke-linecap="round"/>
+<path d="M520,64 L372,64" stroke="#5f5e5a" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+<text x="530" y="58" font-size="22" text-anchor="start" font-weight="bold" fill="#1a56a0" font-family="Helvetica, Arial, sans-serif" >From</text>
+<text x="530" y="84" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >la signature sur la lettre</text>
+<path d="M520,284 L472,284" stroke="#5f5e5a" stroke-width="2" fill="none" marker-end="url(#fl)"/>
+<text x="530" y="270" font-size="22" text-anchor="start" font-weight="bold" fill="#1a56a0" font-family="Helvetica, Arial, sans-serif" >Return-Path</text>
+<text x="530" y="296" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >l&#x27;adresse au dos de l&#x27;enveloppe,</text>
+<text x="530" y="318" font-size="17" text-anchor="start" font-weight="normal" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >où reviennent les lettres perdues</text>
+</svg>

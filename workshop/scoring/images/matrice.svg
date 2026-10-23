@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="490" viewBox="0 0 640 490" font-family="Helvetica, Arial, sans-serif" fill="#1d1d1b">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5f5e5a"/></marker></defs>
+<text x="370.0" y="30" font-size="18" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" >verdict du système →</text>
+<text x="40" y="260.0" font-size="18" text-anchor="middle" font-weight="bold" fill="#5f5e5a" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 40 260.0)">vraie catégorie ↓</text>
+<text x="250.0" y="66" font-size="18" text-anchor="middle" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >ham</text>
+<text x="176" y="146.0" font-size="18" text-anchor="end" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >ham</text>
+<text x="370.0" y="66" font-size="18" text-anchor="middle" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >spam</text>
+<text x="176" y="266.0" font-size="18" text-anchor="end" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >spam</text>
+<text x="490.0" y="66" font-size="18" text-anchor="middle" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >phishing</text>
+<text x="176" y="386.0" font-size="18" text-anchor="end" font-weight="bold" fill="#1d1d1b" font-family="Helvetica, Arial, sans-serif" >phishing</text>
+<rect x="190" y="80" width="120" height="120" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="250.0" y="148.0" font-size="20" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >juste</text>
+<rect x="310" y="80" width="120" height="120" fill="#fff" stroke="#8a8986" stroke-width="1.5"/>
+<rect x="430" y="80" width="120" height="120" fill="#fff" stroke="#8a8986" stroke-width="1.5"/>
+<rect x="190" y="200" width="120" height="120" fill="#fff" stroke="#8a8986" stroke-width="1.5"/>
+<rect x="310" y="200" width="120" height="120" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="370.0" y="268.0" font-size="20" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >juste</text>
+<rect x="430" y="200" width="120" height="120" fill="#fff" stroke="#8a8986" stroke-width="1.5"/>
+<rect x="190" y="320" width="120" height="120" fill="#fff" stroke="#8a8986" stroke-width="1.5"/>
+<rect x="310" y="320" width="120" height="120" fill="#fff" stroke="#8a8986" stroke-width="1.5"/>
+<rect x="430" y="320" width="120" height="120" fill="#e2f5ec" stroke="#1baf7a" stroke-width="1.5"/>
+<text x="490.0" y="388.0" font-size="20" text-anchor="middle" font-weight="bold" fill="#0d7a53" font-family="Helvetica, Arial, sans-serif" >juste</text>
+<rect x="193" y="323" width="114" height="114" fill="#fde3e3" stroke="#e34948" stroke-width="3"/>
+<text x="250.0" y="376.0" font-size="17" text-anchor="middle" font-weight="bold" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >danger :</text>
+<text x="250.0" y="398.0" font-size="17" text-anchor="middle" font-weight="bold" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >livré</text>
+<text x="190" y="472" font-size="17" text-anchor="start" font-weight="normal" fill="#b3261e" font-family="Helvetica, Arial, sans-serif" >Un hameçonnage classé « ham » arrive dans la boîte.</text>
+</svg>

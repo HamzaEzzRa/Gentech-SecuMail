@@ -52,3 +52,5 @@ venv.bak/
 
 # Hidden test answer keys
 *_test_labels.csv
+data/*_labels.csv
+predictions.csv

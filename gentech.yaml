@@ -1,0 +1,71 @@
+# GenTech platform manifest. Published with gentech-platform/infra/publish-course.sh.
+id: secumail
+title: SecuMail 2.0
+description:
+  fr: Réparez la passerelle de courriel de l'école. Détectez le phishing et le spam, puis entraînez un système qui apprend.
+  en: Fix the school's email gateway. Detect phishing and spam, then train a system that learns.
+
+# Copied into each student's workspace, from the committed files only
+workspace:
+  folder: secumail
+  include: [main.ipynb, homework, src, data, workshop, assets]
+
+# Slides are not committed. The build makes them from the committed notebooks.
+build: uv run python tools/build_slides.py
+slides_dir: build/slides
+
+sessions:
+  - id: 1
+    title: { fr: Le problème, en: The problem }
+    agenda:
+      - { minutes: 15, fr: Présentation de la problématique globale, en: Presenting the overall problem }
+      - { minutes: 20, fr: Formation des équipes et guide de démarrage, en: Forming teams and getting started }
+      - { minutes: 20, fr: "Anatomie d'un courriel : en-têtes, domaines, liens", en: "Anatomy of an email: headers, domains, links" }
+      - { minutes: 10, fr: Pause, en: Break }
+      - { minutes: 30, fr: "Exercices 2.1 à 2.4 : domaines et liens", en: "Exercises 2.1 to 2.4: domains and links" }
+      - { minutes: 25, fr: "Rouler la passerelle actuelle : notez le coût et trouvez la faille", en: "Run the current gateway: note the cost and find the flaw" }
+    open: [main.ipynb]
+
+  - id: 2
+    title: { fr: "Qui écrit vraiment ?", en: "Who is really writing?" }
+    agenda:
+      - { minutes: 10, fr: Retour sur la faille du code actuel, en: Back to the flaw in the current code }
+      - { minutes: 20, fr: "Atelier 1 : identité de l'expéditeur", en: "Workshop 1: sender identity" }
+      - { minutes: 30, fr: "Exercices 2.5 à 2.11 : liens, nom affiché, Return-Path et Reply-To", en: "Exercises 2.5 to 2.11: links, display name, Return-Path and Reply-To" }
+      - { minutes: 10, fr: Pause, en: Break }
+      - { minutes: 50, fr: Programmation du module 1 dans homework/phishing_rules.py, en: Programming module 1 in homework/phishing_rules.py }
+    open: [main.ipynb, homework/phishing_rules.py]
+    slides: [seance2-phishing-rules.slides.html]
+
+  - id: 3
+    title: { fr: "Que dit le message ?", en: "What does the message say?" }
+    agenda:
+      - { minutes: 20, fr: "Atelier 2 : contenu du message", en: "Workshop 2: message content" }
+      - { minutes: 30, fr: "Exercices 3.1 à 3.6 : mots-clés, majuscules, expressions", en: "Exercises 3.1 to 3.6: keywords, capitals, phrases" }
+      - { minutes: 10, fr: Pause, en: Break }
+      - { minutes: 50, fr: Programmation du module 2 dans homework/spam_rules.py, en: Programming module 2 in homework/spam_rules.py }
+      - { minutes: 10, fr: "Première mesure : comparez votre coût à celui de la passerelle actuelle", en: "First measure: compare your cost with the current gateway" }
+    open: [main.ipynb, homework/spam_rules.py]
+    slides: [seance3-spam-rules.slides.html]
+
+  - id: 4
+    title: { fr: Un système qui apprend, en: A system that learns }
+    agenda:
+      - { minutes: 20, fr: "Atelier 3 : apprendre à partir d'exemples", en: "Workshop 3: learning from examples" }
+      - { minutes: 25, fr: "Exercices 5.1 à 5.4 : calculer des points en comptant des mots", en: "Exercises 5.1 to 5.4: computing points by counting words" }
+      - { minutes: 10, fr: Pause, en: Break }
+      - { minutes: 50, fr: Programmation du module 3 dans homework/bayes.py, en: Programming module 3 in homework/bayes.py }
+      - { minutes: 15, fr: Comparaison des deux systèmes, et présentation du défi final, en: Comparing both systems, and presenting the final challenge }
+    open: [main.ipynb, homework/bayes.py]
+    slides: [seance4-ml-naive_bayes.slides.html]
+
+  - id: 5
+    title: { fr: Le défi, en: The challenge }
+    agenda:
+      - { minutes: 25, fr: "Atelier 4 : décider et mesurer, exercices 1.1, 1.2 et 4.1 à 4.3", en: "Workshop 4: deciding and measuring, exercises 1.1, 1.2 and 4.1 to 4.3" }
+      - { minutes: 40, fr: "Réglage des points et des seuils, exercice 6.1", en: "Tuning points and thresholds, exercise 6.1" }
+      - { minutes: 10, fr: Pause, en: Break }
+      - { minutes: 15, fr: "Remise des prédictions et classement sur le test final, exercice 6.2", en: "Submitting predictions and ranking on the final test, exercise 6.2" }
+      - { minutes: 30, fr: "Table ronde : retour sur les concepts du cours et sur votre expérience", en: "Round table: looking back on the course and your experience" }
+    open: [main.ipynb, homework/thresholds.py]
+    slides: [seance5-scoring-engine.slides.html]

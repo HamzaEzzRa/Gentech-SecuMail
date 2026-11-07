@@ -14,6 +14,10 @@ workspace:
 build: uv run python tools/build_slides.py
 slides_dir: build/slides
 
+resources:
+  - file: cahier-secumail.pdf
+    title: { fr: Cahier du cours, en: Course workbook }
+
 sessions:
   - id: 1
     title: { fr: Le problème, en: The problem }

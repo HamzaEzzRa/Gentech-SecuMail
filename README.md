@@ -10,6 +10,7 @@ GenTech 2026 email security project.
 | `src/`        | provided code: helpers, scoring engine, measures, verification, ML      |
 | `workshop/`   | instructor slide decks (reveal.js), one per module                      |
 | `data/`       | training emails, unlabelled test emails, brand domains |
+| `resources/`  | course booklet, shown before slides and code in every platform session |
 | `tools/`      | teacher tools: corpus generator and grading                             |
 
 ## Student files
@@ -41,6 +42,13 @@ in `images/` next to the deck and are embedded in the HTML, so one file is enoug
 ```sh
 uv run python tools/build_slides.py   # writes build/slides/seance<N>-<module>-<deck>.slides.html
 ```
+
+## Course booklet
+
+`resources/cahier-secumail.pdf` is the compiled student booklet from
+`OL_Gentech_A2026/build/main.pdf`. Replace this PDF and commit it when the booklet
+changes. The platform packages the committed version and shows it as the first
+tab in every session. It is served separately from student workspaces.
 
 ## Teacher tools
 

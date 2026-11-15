@@ -2,7 +2,7 @@
 
 Complétez les fonctions marquées TODO, une à la fois.
 
-Après chaque fonction, relancez la section « Vérification » de main.ipynb.
+Après chaque fonction, relancez la section « Vérification » de session2.ipynb.
 
 Chaque règle renvoie deux choses : des points et une explication.
 
@@ -35,7 +35,7 @@ POINTS_LIEN_INCOHERENT = 25
 POINTS_NOM_VS_ADRESSE = 20
 POINTS_RETURN_PATH = 15
 
-# Les règles déjà écrites, dans src/scoring_engine.py :
+# Les règles déjà écrites, dans src/phishing.py :
 POINTS_MOT_APPAT = 25
 POINTS_EXTENSION_RISQUE = 10
 POINTS_LIEN_ADRESSE_IP = 25

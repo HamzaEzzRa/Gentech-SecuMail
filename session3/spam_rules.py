@@ -4,7 +4,7 @@ D'abord, complétez les deux listes.
 Ensuite, complétez les fonctions marquées TODO.
 
 Après chaque étape, relancez la section « Vérification »
-de main.ipynb.
+de session3.ipynb.
 
 Chaque règle renvoie (points, explication).
 Si elle ne trouve rien, elle renvoie (0, "").
@@ -23,7 +23,7 @@ POINTS_MOT_COMMERCIAL = 3  # pour chaque mot DIFFÉRENT
 POINTS_MOTS_COMMERCIAUX_MAX = 15
 POINTS_MAJUSCULES = 10
 
-# Les règles déjà écrites, dans src/scoring_engine.py :
+# Les règles déjà écrites, dans src/spam.py :
 POINTS_FORMULATION_PROMO = 10
 POINTS_EXCLAMATIONS = 5
 POINTS_NOMBRE_LIENS = 10
@@ -33,7 +33,7 @@ POINTS_NOMBRE_LIENS = 10
 # Beaucoup de spams sont en anglais. Nos courriels sont en français.
 # Une liste dans une seule langue rate la moitié des spams.
 #
-# Prenez ces mots dans les VRAIS spams : la section 4 de main.ipynb
+# Prenez ces mots dans les VRAIS spams : la section 2 de session3.ipynb
 # en affiche. N'inventez pas.
 #
 # Écrivez-les en minuscules et sans accents :

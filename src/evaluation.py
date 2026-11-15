@@ -12,6 +12,8 @@ calcule donc les mesures sous DEUX politiques :
     PERMISSIVE  suspect -> ham        la quarantaine compte comme une livraison
 """
 
+import random
+
 import pandas as pd
 from sklearn.metrics import classification_report
 
@@ -36,6 +38,12 @@ POLITIQUES = {
     "prudente": "phishing",  # suspect traité comme une menace
     "permissive": "ham",  # suspect traité comme livrable
 }
+
+
+def ancienne_passerelle(courriels, graine=2025):
+    """Le code de démonstration resté après l'incident : un verdict au hasard."""
+    rng = random.Random(graine)
+    return [rng.choice(VERDICTS) for _ in courriels]
 
 
 def matrice_confusion(reels, verdicts):

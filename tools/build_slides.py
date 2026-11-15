@@ -1,9 +1,10 @@
-"""Compile the workshop notebooks into reveal.js slides (teachers only).
+"""Check the session notebooks, then compile the slide decks (teachers only).
 
     uv run python tools/build_slides.py
 
-Writes one HTML file per deck to build/slides/. Each deck is executed first,
-from its own folder like in class, so its demos show live results.
+Writes slides/session<N>/<deck>.ipynb to build/slides/session<N>-<deck>.slides.html.
+Each deck is executed first, from its own folder like in class, so its demos
+show live results.
 """
 
 import argparse
@@ -11,21 +12,14 @@ import subprocess
 import sys
 from pathlib import Path
 
+import check_sessions
+
 RACINE = Path(__file__).resolve().parent.parent
 SORTIE = RACINE / "build" / "slides"
 
-# Session, deck. Order follows the course plan.
-DECKS = [
-    (2, "workshop/phishing/rules.ipynb"),
-    (3, "workshop/spam/rules.ipynb"),
-    (4, "workshop/ml/naive_bayes.ipynb"),
-    (5, "workshop/scoring/engine.ipynb"),
-]
 
-
-def compiler(seance, deck, sortie):
-    chemin = Path(deck)
-    nom = f"seance{seance}-{chemin.parent.name}-{chemin.stem}"
+def compiler(deck, sortie):
+    nom = f"{deck.parent.name}-{deck.stem}"
     commande = [
         sys.executable,
         "-m",
@@ -40,7 +34,7 @@ def compiler(seance, deck, sortie):
         str(sortie),
         "--output",
         nom,
-        str(RACINE / deck),
+        str(deck),
     ]
     subprocess.run(commande, check=True, capture_output=True)
     return sortie / f"{nom}.slides.html"
@@ -51,9 +45,11 @@ def main():
     parser.add_argument("--sortie", type=Path, default=SORTIE)
     args = parser.parse_args()
 
+    check_sessions.main()
+
     args.sortie.mkdir(parents=True, exist_ok=True)
-    for seance, deck in DECKS:
-        print(compiler(seance, deck, args.sortie).relative_to(RACINE))
+    for deck in sorted(RACINE.glob("slides/session*/*.ipynb")):
+        print(compiler(deck, args.sortie).relative_to(RACINE))
 
 
 if __name__ == "__main__":

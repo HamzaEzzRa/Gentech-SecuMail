@@ -1,10 +1,10 @@
 """Training, prediction, and explanations for module 3.
 
-Each function tolerates a homework/bayes.py that is not finished yet, so that
-main.ipynb runs from the first session.
+Each function tolerates a session4/bayes.py that is not finished yet, so that
+session4.ipynb runs before the module is written.
 """
 
-from homework import bayes
+from session4 import bayes
 from src.email import mots_du_courriel
 from src.evaluation import CLASSES
 

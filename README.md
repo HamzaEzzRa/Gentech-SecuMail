@@ -4,7 +4,7 @@ GenTech 2026 email security project.
 
 | Path            | Role                                                                  |
 | --------------- | --------------------------------------------------------------------- |
-| `session<N>/`   | session N: its notebook and the file students write that day          |
+| `session<N>/`   | session N: `main.ipynb` and the file students write that day         |
 | `src/`          | provided code, by module                                              |
 | `data/`         | training emails, unlabelled test emails, brand domains                |
 | `slides/`       | teacher decks (reveal.js), one folder per session, not in workspaces  |

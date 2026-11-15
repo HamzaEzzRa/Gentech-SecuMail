@@ -1,7 +1,7 @@
 """Training, prediction, and explanations for module 3.
 
 Each function tolerates a session4/bayes.py that is not finished yet, so that
-session4.ipynb runs before the module is written.
+session4/main.ipynb runs before the module is written.
 """
 
 from session4 import bayes

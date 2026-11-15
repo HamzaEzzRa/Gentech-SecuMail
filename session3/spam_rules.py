@@ -4,7 +4,7 @@ D'abord, complétez les deux listes.
 Ensuite, complétez les fonctions marquées TODO.
 
 Après chaque étape, relancez la section « Vérification »
-de session3.ipynb.
+de session3/main.ipynb.
 
 Chaque règle renvoie (points, explication).
 Si elle ne trouve rien, elle renvoie (0, "").
@@ -33,7 +33,7 @@ POINTS_NOMBRE_LIENS = 10
 # Beaucoup de spams sont en anglais. Nos courriels sont en français.
 # Une liste dans une seule langue rate la moitié des spams.
 #
-# Prenez ces mots dans les VRAIS spams : la section 2 de session3.ipynb
+# Prenez ces mots dans les VRAIS spams : la section 2 de session3/main.ipynb
 # en affiche. N'inventez pas.
 #
 # Écrivez-les en minuscules et sans accents :

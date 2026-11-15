@@ -2,7 +2,7 @@
 
 Complétez les fonctions marquées TODO, une à la fois.
 
-Après chaque fonction, relancez la section « Vérification » de session2.ipynb.
+Après chaque fonction, relancez la section « Vérification » de session2/main.ipynb.
 
 Chaque règle renvoie deux choses : des points et une explication.
 

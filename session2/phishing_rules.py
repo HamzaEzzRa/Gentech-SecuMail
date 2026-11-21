@@ -96,32 +96,18 @@ def regle_substitution(domaine, marques_connues):
 
 def regle_lien_incoherent(url, marque, table_marques):
     """
-    TODO. Donne POINTS_LIEN_INCOHERENT points si le courriel dit venir
-    d'une marque, mais que le lien mène ailleurs que chez cette marque.
+    TODO. Donne POINTS_LIEN_INCOHERENT points si le courriel cite une marque,
+    mais que le lien ne mène pas chez cette marque.
 
-    Si `marque` vaut None, le courriel ne cite aucune marque.
-    Renvoyez alors (0, "").
-
-    `table_marques` donne les domaines officiels de chaque marque :
-
-        table_marques["netflix"]  ->  ["netflix.com"]
-
-    POURQUOI COMPARER AVEC LA MARQUE ?
-
-    Presque tous les liens mènent vers des domaines absents de notre liste :
-    un fournisseur, un journal, une boutique du quartier.
-
-    Une règle qui les signale tous sonne l'alerte pour presque tous
-    les courriels. Et une alerte qui sonne pour tout ne détecte rien.
-
-    L'indice, c'est la contradiction :
-    le courriel dit « Netflix », mais le lien ne va pas chez Netflix.
+        "netflix", "https://www.netflix.com/browse"     ->  (0, "")
+        "netflix", "http://netflix-billing.tk/login"    ->  des points
+        None,      "https://journal-local.ca/article"   ->  (0, "") : pas de marque
 
     Étapes :
 
-    1. Si `marque` vaut None, il n'y a rien à comparer.
-    2. Trouvez le domaine du lien avec extraire_domaine_url(url).
-    3. Vérifiez avec domaine_est_officiel() et les domaines de CETTE marque.
+    1. `marque` vaut None ? Renvoyez (0, "").
+    2. Trouvez le domaine du lien avec extraire_domaine_url().
+    3. Vérifiez avec domaine_est_officiel() et table_marques[marque].
     """
     # TODO
 

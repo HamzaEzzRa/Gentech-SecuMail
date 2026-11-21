@@ -1,9 +1,8 @@
 """MODULE 2 : le message cherche-t-il à vendre ?
 
-D'abord, complétez les deux listes.
-Ensuite, complétez les fonctions marquées TODO.
+Complétez les fonctions marquées TODO, une à la fois.
 
-Après chaque étape, relancez la section « Vérification »
+Après chaque fonction, relancez la section « Vérification »
 de session3/main.ipynb.
 
 Chaque règle renvoie (points, explication).
@@ -28,46 +27,28 @@ POINTS_FORMULATION_PROMO = 10
 POINTS_EXCLAMATIONS = 5
 POINTS_NOMBRE_LIENS = 10
 
-# TODO : au moins 20 mots, en français ET en anglais.
-#
-# Beaucoup de spams sont en anglais. Nos courriels sont en français.
-# Une liste dans une seule langue rate la moitié des spams.
-#
-# Prenez ces mots dans les VRAIS spams : la section 2 de session3/main.ipynb
-# en affiche. N'inventez pas.
-#
-# Écrivez-les en minuscules et sans accents :
-# « félicitations » s'écrit "felicitations".
+# Les mots qui sentent la publicité, relevés dans les spams d'entraînement.
+# En minuscules et sans accents : « félicitations » s'écrit "felicitations".
 MOTS_COMMERCIAUX = [
-    "free",
-    "gratuit",
-    "win",
-    "gagnez",
-    "offer",
-    "offre",
-    "discount",
-    "rabais",
-]
+    # gratuit et cadeaux
+    "free", "gratuit", "gratuite", "gratuitement", "cadeau", "bonus",
+    # gains et concours
+    "gagner", "gagnez", "gagnant", "prize", "tirage", "felicitations",
+    # offres et rabais
+    "offer", "offre", "promo", "promotion", "deal", "exclusive", "discount",
+    "rabais", "reduction", "soldes", "liquidation", "economisez", "save",
+    # appels à acheter
+    "achetez", "commandez", "buy", "shop", "abonnez", "inscrivez", "cash",
+    "shipping", "stock",
+]  # fmt: skip
 
-# TODO : ajoutez au moins 4 expressions.
-#
-# Une expression, ce sont plusieurs mots ensemble, dans cet ordre.
-# Elle est plus précise qu'un mot seul :
-#
-#   « croissance de 12 % des ventes »  ->  un pourcentage seul   ->  rien
-#   « -50 % de rabais »                ->  pourcentage + rabais  ->  des points
-#
-# Idées : pousser à acheter, faire croire que l'offre finit bientôt,
-# promettre quelque chose de gratuit.
-#
-# Même règle : minuscules et sans accents.
+# Plusieurs mots ensemble, dans cet ordre. Plus précis qu'un mot seul.
 EXPRESSIONS_PROMO = [
-    "% de rabais",
-    "% off",
-    "achetez maintenant",
-    "buy now",
-    "offre limitee",
-]
+    "% de rabais", "% de reduction",
+    "achetez maintenant", "commandez maintenant", "buy now",
+    "offre limitee", "quantites limitees", "derniere chance", "ne manquez pas",
+    "avant minuit", "free shipping", "vous avez gagne", "meilleur prix",
+]  # fmt: skip
 
 
 def regle_mots_commerciaux(texte):

@@ -16,7 +16,7 @@ GenTech 2026 email security project.
 | File                         | Written in | Used in | To do                                         |
 | ---------------------------- | ---------- | ------- | --------------------------------------------- |
 | `session2/phishing_rules.py` | 2          | 1 to 5  | fix `domaine_est_officiel`, write 4 rules     |
-| `session3/spam_rules.py`     | 3          | 3 to 5  | complete 2 lists, write 3 functions           |
+| `session3/spam_rules.py`     | 3          | 3 to 5  | write 3 functions                             |
 | `session4/bayes.py`          | 4          | 4, 5    | write 3 functions                             |
 | `session5/thresholds.py`     | 5          | 3 to 5  | tune `SEUIL_`, and the `POINTS_` of both rule files |
 

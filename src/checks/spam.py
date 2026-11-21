@@ -8,17 +8,6 @@ def verifier():
     with bilan("MODULE 2, CONTENU DU MESSAGE"):
         section("Composante 2.1 - mots-cles commerciaux")
         essai(
-            "liste d'au moins 20 termes", lambda: len(sp.MOTS_COMMERCIAUX) >= 20, True
-        )
-        essai(
-            "liste bilingue (au moins un mot accentue ou francais)",
-            lambda: any(
-                m in sp.MOTS_COMMERCIAUX
-                for m in ["gratuit", "rabais", "gagnez", "offre"]
-            ),
-            True,
-        )
-        essai(
             "un mot repete ne compte qu'une fois",
             lambda: points(sp.regle_mots_commerciaux("gratuit GRATUIT Gratuit")),
             sp.POINTS_MOT_COMMERCIAL,

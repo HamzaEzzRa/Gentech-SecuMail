@@ -11,7 +11,8 @@ get_ipython().run_line_magic("autoreload", "2")
 
 from src import evaluation, pipeline  # noqa: F401, the notebook uses both
 
-table_marques = pipeline.charger_domaines_officiels()
+domaines_des_marques = pipeline.charger_domaines_officiels()
+table_marques = domaines_des_marques  # ancien nom, notebooks copiés avant le renommage
 courriels = pipeline.charger_courriels()
 entrainement, validation = pipeline.separer_validation(courriels)
 reels = [c["label"] for c in validation]

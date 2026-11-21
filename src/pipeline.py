@@ -22,7 +22,7 @@ def charger_domaines_officiels(chemin=CHEMIN_MARQUES):
 
         {"amazon": ["amazon.ca", "amazon.com"], "netflix": ["netflix.com"], ...}
     """
-    table = {}
+    domaines_des_marques = {}
     with open(chemin, encoding="utf-8") as f:
         for ligne in csv.DictReader(f):
             marque = ligne["marque"].strip().lower()
@@ -31,8 +31,8 @@ def charger_domaines_officiels(chemin=CHEMIN_MARQUES):
                 for d in ligne["domaines_officiels"].split(",")
                 if d.strip()
             ]
-            table[marque] = domaines
-    return table
+            domaines_des_marques[marque] = domaines
+    return domaines_des_marques
 
 
 def separer_validation(courriels, part_validation=0.3, graine=42):

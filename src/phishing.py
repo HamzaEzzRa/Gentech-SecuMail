@@ -176,7 +176,7 @@ def regle_reply_to(entete_from, entete_reply_to):
 # ==========================================================================
 
 
-def analyser_phishing(courriel, table_marques):
+def analyser_phishing(courriel, domaines_des_marques):
     """
     Applique toutes les règles du module 1 à un courriel.
 
@@ -185,8 +185,8 @@ def analyser_phishing(courriel, table_marques):
 
     Renvoie (score_brut, [(points, explication), ...]).
     """
-    officiels = tous_les_domaines(table_marques)
-    marques = list(table_marques.keys())
+    officiels = tous_les_domaines(domaines_des_marques)
+    marques = list(domaines_des_marques.keys())
     expediteur = courriel.get("sender", "")
     domaine_exp = extraire_domaine_adresse(expediteur) or ""
     couples = []
@@ -204,7 +204,7 @@ def analyser_phishing(courriel, table_marques):
     marque = marque_annoncee(courriel, marques)
     for url in extraire_urls(texte):
         couples += [
-            ph.regle_lien_incoherent(url, marque, table_marques),
+            ph.regle_lien_incoherent(url, marque, domaines_des_marques),
             regle_lien_adresse_ip(url),
             regle_lien_raccourcisseur(url),
             regle_lien_sans_https(url),
@@ -212,7 +212,9 @@ def analyser_phishing(courriel, table_marques):
 
     # Composantes 1.3 et 1.4 — nom affiché et en-têtes
     couples += [
-        ph.regle_nom_vs_adresse(courriel.get("name", ""), expediteur, table_marques),
+        ph.regle_nom_vs_adresse(
+            courriel.get("name", ""), expediteur, domaines_des_marques
+        ),
         ph.regle_return_path(expediteur, courriel.get("return_path", "")),
         regle_reply_to(expediteur, courriel.get("reply_to", "")),
     ]
@@ -222,9 +224,9 @@ def analyser_phishing(courriel, table_marques):
     return sum(p for p, _ in details), details
 
 
-def afficher_analyse(courriel, table_marques):
+def afficher_analyse(courriel, domaines_des_marques):
     """Les indices du module 1 pour un courriel, avec leurs points."""
-    score, details = analyser_phishing(courriel, table_marques)
+    score, details = analyser_phishing(courriel, domaines_des_marques)
     print(f"Expediteur : {courriel.get('name', '')} <{courriel.get('sender', '')}>")
     print(f"Sujet      : {courriel.get('subject', '')}")
     for points, explication in details:

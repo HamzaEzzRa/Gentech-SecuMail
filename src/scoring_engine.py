@@ -70,7 +70,7 @@ def decider(score_phishing, score_spam):
     return "ham"
 
 
-def analyser_courriel(courriel, table_marques):
+def analyser_courriel(courriel, domaines_des_marques):
     """
     Chaîne complète pour un courriel :
 
@@ -82,7 +82,7 @@ def analyser_courriel(courriel, table_marques):
     échoue : le message invite alors à lancer la vérification.
     """
     try:
-        brut_p, details_p = analyser_phishing(courriel, table_marques)
+        brut_p, details_p = analyser_phishing(courriel, domaines_des_marques)
         brut_s, details_s = analyser_spam(courriel)
         score_p = borner(brut_p)
         score_s = borner(brut_s)
@@ -105,8 +105,8 @@ def analyser_courriel(courriel, table_marques):
     }
 
 
-def analyser_tous(courriels, table_marques):
-    return [analyser_courriel(c, table_marques) for c in courriels]
+def analyser_tous(courriels, domaines_des_marques):
+    return [analyser_courriel(c, domaines_des_marques) for c in courriels]
 
 
 def afficher_rapport(resultat):

@@ -51,14 +51,14 @@ def mots_du_courriel(courriel):
     return set(mots_du_texte(texte))
 
 
-def tous_les_domaines(table):
+def tous_les_domaines(domaines_des_marques):
     """Liste à plat de tous les domaines officiels connus."""
-    return [d for domaines in table.values() for d in domaines]
+    return [d for domaines in domaines_des_marques.values() for d in domaines]
 
 
 def extraire_urls(texte):
-    """Liste des URL présentes dans un texte."""
-    return MOTIF_URL.findall(texte or "")
+    """Liste des URL présentes dans un texte, sans la ponctuation de la phrase."""
+    return [url.rstrip(".,;:!?") for url in MOTIF_URL.findall(texte or "")]
 
 
 def extraire_domaine_adresse(adresse):

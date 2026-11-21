@@ -8,9 +8,9 @@ from src.email import tous_les_domaines
 
 def verifier():
     with bilan("MODULE 1, IDENTITE DE L'EXPEDITEUR"):
-        table = pipeline.charger_domaines_officiels()
-        officiels = tous_les_domaines(table)
-        marques = list(table.keys())
+        domaines_des_marques = pipeline.charger_domaines_officiels()
+        officiels = tous_les_domaines(domaines_des_marques)
+        marques = list(domaines_des_marques.keys())
 
         section("Composante 1.1 - le piege du sous-domaine (n° 6 vs n° 7)")
         essai(
@@ -63,7 +63,7 @@ def verifier():
             "marque annoncee + lien officiel -> 0",
             lambda: points(
                 ph.regle_lien_incoherent(
-                    "https://www.netflix.com/browse", "netflix", table
+                    "https://www.netflix.com/browse", "netflix", domaines_des_marques
                 )
             ),
             0,
@@ -72,7 +72,9 @@ def verifier():
             "marque annoncee + sous-domaine officiel -> 0",
             lambda: points(
                 ph.regle_lien_incoherent(
-                    "https://accesd.desjardins.com/identification", "desjardins", table
+                    "https://accesd.desjardins.com/identification",
+                    "desjardins",
+                    domaines_des_marques,
                 )
             ),
             0,
@@ -81,7 +83,9 @@ def verifier():
             "marque annoncee + lien piege -> des points",
             lambda: points(
                 ph.regle_lien_incoherent(
-                    "http://netflix-billing.tk/update.php", "netflix", table
+                    "http://netflix-billing.tk/update.php",
+                    "netflix",
+                    domaines_des_marques,
                 )
             ),
             ph.POINTS_LIEN_INCOHERENT,
@@ -89,7 +93,9 @@ def verifier():
         essai(
             "PIEGE : aucune marque annoncee -> la regle reste MUETTE",
             lambda: points(
-                ph.regle_lien_incoherent("http://bit.ly/aff9921", None, table)
+                ph.regle_lien_incoherent(
+                    "http://bit.ly/aff9921", None, domaines_des_marques
+                )
             ),
             0,
         )
@@ -98,7 +104,9 @@ def verifier():
         essai(
             "usurpation Amazon via gmail",
             lambda: points(
-                ph.regle_nom_vs_adresse("Amazon Support", "support123@gmail.com", table)
+                ph.regle_nom_vs_adresse(
+                    "Amazon Support", "support123@gmail.com", domaines_des_marques
+                )
             ),
             ph.POINTS_NOM_VS_ADRESSE,
         )
@@ -106,7 +114,7 @@ def verifier():
             "Desjardins depuis son vrai domaine",
             lambda: points(
                 ph.regle_nom_vs_adresse(
-                    "AccesD Desjardins", "noreply@desjardins.com", table
+                    "AccesD Desjardins", "noreply@desjardins.com", domaines_des_marques
                 )
             ),
             0,
@@ -115,7 +123,9 @@ def verifier():
             "Microsoft depuis microsoftonline.com",
             lambda: points(
                 ph.regle_nom_vs_adresse(
-                    "Equipe Microsoft 365", "no-reply@microsoftonline.com", table
+                    "Equipe Microsoft 365",
+                    "no-reply@microsoftonline.com",
+                    domaines_des_marques,
                 )
             ),
             0,
@@ -124,7 +134,7 @@ def verifier():
             "nom de personne : la regle reste MUETTE",
             lambda: points(
                 ph.regle_nom_vs_adresse(
-                    "Marie Tremblay", "marie@cegep-exemple.qc.ca", table
+                    "Marie Tremblay", "marie@cegep-exemple.qc.ca", domaines_des_marques
                 )
             ),
             0,

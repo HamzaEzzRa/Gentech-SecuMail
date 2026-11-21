@@ -94,7 +94,7 @@ def regle_substitution(domaine, marques_connues):
     # TODO
 
 
-def regle_lien_incoherent(url, marque, table_marques):
+def regle_lien_incoherent(url, marque, domaines_des_marques):
     """
     TODO. Donne POINTS_LIEN_INCOHERENT points si le courriel cite une marque,
     mais que le lien ne mène pas chez cette marque.
@@ -103,16 +103,20 @@ def regle_lien_incoherent(url, marque, table_marques):
         "netflix", "http://netflix-billing.tk/login"    ->  des points
         None,      "https://journal-local.ca/article"   ->  (0, "") : pas de marque
 
+    `domaines_des_marques` donne les domaines officiels de chaque marque :
+
+        domaines_des_marques["netflix"]  ->  ["netflix.com"]
+
     Étapes :
 
     1. `marque` vaut None ? Renvoyez (0, "").
     2. Trouvez le domaine du lien avec extraire_domaine_url().
-    3. Vérifiez avec domaine_est_officiel() et table_marques[marque].
+    3. Vérifiez avec domaine_est_officiel() et domaines_des_marques[marque].
     """
     # TODO
 
 
-def regle_nom_vs_adresse(nom_affiche, adresse, table_marques):
+def regle_nom_vs_adresse(nom_affiche, adresse, domaines_des_marques):
     """
     TODO. Donne POINTS_NOM_VS_ADRESSE points si le nom affiché cite
     une marque, mais que l'adresse ne vient pas de cette marque.
@@ -120,15 +124,20 @@ def regle_nom_vs_adresse(nom_affiche, adresse, table_marques):
         "Amazon Support", "support123@gmail.com"       ->  des points
         "Marie Tremblay", "marie@cegep-exemple.qc.ca"  ->  (0, "") : pas de marque
 
+    `domaines_des_marques` donne les domaines officiels de chaque marque :
+
+        domaines_des_marques["netflix"]    ->  ["netflix.com"]
+        list(domaines_des_marques.keys())  ->  ["amazon", "netflix", ...]
+
     Étapes :
 
     1. Trouvez la marque du nom :
 
-           marque = marque_dans_nom(nom_affiche, list(table_marques))
+           marque = marque_dans_nom(nom_affiche, list(domaines_des_marques.keys()))
 
     2. Pas de marque ? Renvoyez (0, "").
     3. Trouvez le domaine de l'adresse avec extraire_domaine_adresse().
-    4. Vérifiez avec domaine_est_officiel() et les domaines de CETTE marque.
+    4. Vérifiez avec domaine_est_officiel() et domaines_des_marques[marque].
     """
     # TODO
 
